@@ -31,10 +31,13 @@ namespace AspnetRunBasics
             var userName = "swn";
             var basket = await _basketService.GetBasket(userName);
 
-            var item = basket.Items.Single(x => x.ProductId == productId);
-            basket.Items.Remove(item);
+            var item = basket.Items.FirstOrDefault(x => x.ProductId == productId);
+            if (item != null)
+            {
+                basket.Items.Remove(item);
 
-            var basketUpdated = await _basketService.UpdateBasket(basket);
+                var basketUpdated = await _basketService.UpdateBasket(basket);
+            }
 
             return RedirectToPage();
         }
