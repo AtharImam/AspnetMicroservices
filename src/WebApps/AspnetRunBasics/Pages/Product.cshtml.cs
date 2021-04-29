@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspnetRunBasics.Models;
@@ -15,8 +16,8 @@ namespace AspnetRunBasics
 
         public ProductModel(ICatalogService catalogService, IBasketService basketService)
         {
-            _catalogService = catalogService;
-            _basketService = basketService;
+            _catalogService = catalogService ?? throw new ArgumentNullException(nameof(catalogService));
+            _basketService = basketService ?? throw new ArgumentNullException(nameof(basketService));
         }
 
         public IEnumerable<string> CategoryList { get; set; } = new List<string>();

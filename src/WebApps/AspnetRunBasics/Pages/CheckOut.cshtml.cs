@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AspnetRunBasics.Models;
 using AspnetRunBasics.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,8 +14,8 @@ namespace AspnetRunBasics
 
         public CheckOutModel(IBasketService basketService, IOrderService orderService)
         {
-            _basketService = basketService;
-            _orderService = orderService;
+            _basketService = basketService ?? throw new ArgumentNullException(nameof(basketService));
+            _orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
         }
 
         [BindProperty]
@@ -26,6 +27,7 @@ namespace AspnetRunBasics
         {
             var userName = "swn";
             Cart = await _basketService.GetBasket(userName);
+
             return Page();
         }
 
@@ -43,7 +45,7 @@ namespace AspnetRunBasics
             Order.TotalPrice = Cart.TotalPrice;
 
             await _basketService.CheckoutBasket(Order);
-
+            
             return RedirectToPage("Confirmation", "OrderSubmitted");
         }       
     }

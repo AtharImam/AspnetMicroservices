@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AspnetRunBasics.Models;
 using AspnetRunBasics.Services;
@@ -13,18 +14,16 @@ namespace AspnetRunBasics
 
         public OrderModel(IOrderService orderService)
         {
-            _orderService = orderService;
+            _orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
         }
 
         public IEnumerable<OrderResponseModel> Orders { get; set; } = new List<OrderResponseModel>();
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var userName = "swn";
-
-            Orders = await _orderService.GetOrdersByUserName(userName);
+            Orders = await _orderService.GetOrdersByUserName("swn");
 
             return Page();
-        }
+        }       
     }
 }

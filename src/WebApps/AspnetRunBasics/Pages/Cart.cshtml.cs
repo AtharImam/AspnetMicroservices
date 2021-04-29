@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AspnetRunBasics.Models;
 using AspnetRunBasics.Services;
@@ -13,10 +14,10 @@ namespace AspnetRunBasics
 
         public CartModel(IBasketService basketService)
         {
-            _basketService = basketService;
+            _basketService = basketService ?? throw new ArgumentNullException(nameof(basketService));
         }
 
-        public BasketModel Cart { get; set; } = new BasketModel();        
+        public BasketModel Cart { get; set; } = new BasketModel();
 
         public async Task<IActionResult> OnGetAsync()
         {

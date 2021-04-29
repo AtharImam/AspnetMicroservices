@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:58076/",
-      "sslPort": 44335
+      "applicationUrl": "http://localhost:51063/",
+      "sslPort": 44334
     }
   },
   "profiles": {
@@ -23,7 +23,7 @@
       },
       "applicationUrl": "http://localhost:5006"
     },
-    "Docker (1)": {
+    "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",

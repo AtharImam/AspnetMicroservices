@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AspnetRunBasics.Models;
 using AspnetRunBasics.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,8 +14,8 @@ namespace AspnetRunBasics
 
         public ProductDetailModel(ICatalogService catalogService, IBasketService basketService)
         {
-            _catalogService = catalogService;
-            _basketService = basketService;
+            _catalogService = catalogService ?? throw new ArgumentNullException(nameof(catalogService));
+            _basketService = basketService ?? throw new ArgumentNullException(nameof(basketService));
         }
 
         public CatalogModel Product { get; set; }
