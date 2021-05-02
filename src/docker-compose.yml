@@ -82,12 +82,16 @@ services:
       context: .
       dockerfile: WebApps/WebStatus/Dockerfile
 
+  consul:
+    image: consul
+
 volumes:
   mongo_data:
   portainer_data:
   postgres_data:
   pgadmin_data:
   elasticsearch-data:
+  consul_data:
 
 
 

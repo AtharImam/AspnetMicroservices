@@ -208,3 +208,12 @@ services:
     ports:
       - "8007:80"
 
+  consul:
+    container_name: consul
+    restart: always
+    ports:
+        - "8300:8300"
+        - "8500:8500"
+    volumes:
+      - consul_data:/consul/data
+
